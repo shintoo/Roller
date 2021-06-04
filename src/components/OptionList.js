@@ -1,9 +1,9 @@
 import React from "react"
-import RestaurantCard from "./RestaurantCard"
+import OptionCard from "./OptionCard"
 
-function RestaurantList(props) {
-  const restaurants = props.restaurants.map(r => 
-    <RestaurantCard
+function OptionList(props) {
+  const options = props.options.map(r => 
+    <OptionCard
       selected={r.id === props.selected}
       key={r.id}
       completed={props.completed}
@@ -17,10 +17,10 @@ function RestaurantList(props) {
       item={r} />)
 
   return (
-    <div className="restaurant-list">
-      {restaurants}
+    <div className="option-list">
+      {options}
      </div>
   )
 }
 
-export default RestaurantList
+export default OptionList

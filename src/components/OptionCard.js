@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 
-function RestaurantCard(props) {
+function OptionCard(props) {
 
   const [ ignored, setIgnored ] = useState(props.item.ignored)
   const classes =
-    ["restaurant-card", 
+    ["option-card", 
     props.selected ? " selected " : ""
     ,props.item.ignored ? "ignored " : ""
     ,props.completed ? "completed ": ""]
@@ -13,11 +13,11 @@ function RestaurantCard(props) {
 
   return (
     <div className={classes.join(" ")} onClick={() => {props.handleIgnore(); setIgnored(!ignored)}}>
-      <div className="restaurant-title">
+      <div className="option-title">
         <p>{props.item.name}</p>
       </div>
     </div>
   )
 }
 
-export default RestaurantCard
+export default OptionCard

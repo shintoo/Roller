@@ -2,25 +2,25 @@ import React, { useState } from "react"
 import Header from "./components/Header"
 import AddButton from "./components/AddButton"
 import RollButton from "./components/RollButton"
-import RestaurantList from "./components/RestaurantList"
-import restaurantData from "./resources/restaurantData"
+import OptionList from "./components/OptionList"
+import optionData from "./resources/optionData"
 
 function App() {
   const [ selected, setSelected ] = useState()
   const [ completed, setCompleted ] = useState(false)
-  const [ restaurants, setRestaurants ] = useState(restaurantData)
+  const [ options, setOptions ] = useState(optionData)
 
-  const ticks = Math.floor(Math.random() * 20) + (restaurants.length * 2)
+  const ticks = Math.floor(Math.random() * 20) + (options.length * 2)
   let delay = 100
 
   const roll = async () => {
     let i
     let id = 0
 
-    if (restaurants.every(r => r.ignored))
+    if (options.every(r => r.ignored))
       return
 
-    while (restaurants[id].ignored)
+    while (options[id].ignored)
       id++
 
     setSelected(id)
@@ -34,13 +34,13 @@ function App() {
       setSelected(prevSelected => {
           let id = prevSelected + 1
 
-          if (id >= restaurants.length)
+          if (id >= options.length)
             id = 0
 
-          while (restaurants[id].ignored) {
+          while (options[id].ignored) {
             id++
 
-            if (id >= restaurants.length)
+            if (id >= options.length)
               id = 0
           }
 
@@ -58,43 +58,43 @@ function App() {
 
 
   const ignore = id => {
-    setRestaurants(prevRestaurants => {
-      prevRestaurants[id].ignored = !prevRestaurants[id].ignored
-      return prevRestaurants
+    setOptions(prevOptions => {
+      prevOptions[id].ignored = !prevOptions[id].ignored
+      return prevOptions
     })
   }
 
 
   const deleteOption = id => {
-    const index = restaurants.indexOf(id)
-    setRestaurants(prevRestaurants => {
-      prevRestaurants.splice(index, 1)
-      return [ ...prevRestaurants ]
+    const index = options.indexOf(id)
+    setOptions(prevOptions => {
+      prevOptions.splice(index, 1)
+      return [ ...prevOptions ]
     })
   }
 
-  const addRestaurant = name => {
+  const addOption = name => {
     if (name.length === 0)
       return
 
-    const newRestaurant = {
-      id: restaurants.length,
+    const newOption = {
+      id: options.length,
       name: name
     }
-    setRestaurants(prevRestaurants => [ ...prevRestaurants, newRestaurant ])
+    setOptions(prevOptions => [ ...prevOptions, newOption ])
   }
 
   return (
     <div style={{textAlign: "center"}}>
       <Header />
-      <RestaurantList
-        restaurants={restaurants}
+      <OptionList
+        options={options}
         completed={completed}
         ignore={ignore}
         deleteOption={deleteOption}
         selected={selected} />
-      <AddButton addRestaurant={addRestaurant} />
-      <RollButton onClick={roll} disabled={restaurants.every(r => r.ignored)} />
+      <AddButton addOption={addOption} />
+      <RollButton onClick={roll} disabled={options.every(r => r.ignored)} />
     </div>
   )
 }
