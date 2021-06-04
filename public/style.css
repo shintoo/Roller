@@ -1,0 +1,103 @@
+body {
+  text-align: center;
+  background-color: #f4f4f4;
+  color: #444;
+  padding: 2em;
+  font-family: Calibri, sans-serif;
+}
+
+hr {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 0;
+  color: #e5e5e5;
+}
+
+.header {
+  margin-bottom: 1em;
+}
+
+.instructions {
+  color: #777;
+  font-size: 0.8em;
+}
+
+.restaurant-list {
+  padding: 1em;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.restaurant-card {
+  width: 10em;
+  border-style: solid;
+  border-color: #eee;
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  background-color: #fff;
+  border-width: 1px;
+  display: block;
+  text-align: left;
+  box-shadow: 0px 3px 10px 0px #e0e0e0;
+}
+
+.restaurant-title {
+  display: block;
+  padding: 1em;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.selected {
+  border-color: #FFDA3E;
+  background-color: #FFF9DE;
+}
+
+.selected.completed {
+  animation-name: winner;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes winner {
+  from {
+    background-color: #FFF9DE;
+    border-color: #FFDA3E;
+  }
+  to {
+    border-color: #BFB;
+    background-color: #f0fff0;
+    transform: translate(0, -.5em);
+    box-shadow: 0px 8px 30px 0px #e0e0e0;
+  }
+}
+
+.ignored {
+  opacity: 0.5;
+  box-shadow: 0px 1px 5px 0px #e0e0e0;
+}
+
+/* TODO add animation for ignore on/off */
+
+button {
+  background-color: #ffffff;
+}
+
+
+.add-button {
+  border: none;
+  background-color: #f4f4f4;
+  color: #777;
+  font-size: 2em;
+}
+
+.roll-button {
+  background-color: #108Bff;
+  color: white;
+  border: none;
+  border-color: #eee;
+  padding: 15px 32px;
+  display: inline-block;
+  margin-top: 2em;
+}
