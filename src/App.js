@@ -10,12 +10,11 @@ function App() {
   const [ completed, setCompleted ] = useState(false)
   const [ options, setOptions ] = useState(optionData)
 
-  const ticks = Math.floor(Math.random() * 20) + (options.length * 2)
-  let delay = 100
-
   const roll = async () => {
     let i
+    let delay = 100
     let id = 0
+    const ticks = Math.floor(Math.random() * 20) + (options.length * 2)
 
     if (options.every(r => r.ignored))
       return
