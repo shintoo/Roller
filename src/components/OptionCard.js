@@ -3,11 +3,13 @@ import React, { useState } from "react"
 function OptionCard(props) {
 
   const [ ignored, setIgnored ] = useState(props.item.ignored)
-  const classes =
-    ["option-card", 
-    props.selected ? " selected " : ""
-    ,props.item.ignored ? "ignored " : ""
-    ,props.completed ? "completed ": ""]
+  let classes = ["option-card"]
+  if (props.selected)
+      classes.push("selected")
+  if (props.item.ignored)
+      classes.push("ignored")
+  if (props.completed)
+      classes.push("completed")
 
   const cardOnClick = event => {
     if (event.target.name === "delete") {
