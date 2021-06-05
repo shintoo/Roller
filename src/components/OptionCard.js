@@ -9,13 +9,25 @@ function OptionCard(props) {
     ,props.item.ignored ? "ignored " : ""
     ,props.completed ? "completed ": ""]
 
-  console.log(props.item.name, classes)
+  const cardOnClick = event => {
+    if (event.target.name == "delete") {
+      return
+    }
+
+    props.handleIgnore()
+    setIgnored(!ignored)
+  }
 
   return (
-    <div className={classes.join(" ")} onClick={() => {props.handleIgnore(); setIgnored(!ignored)}}>
-      <div className="option-title">
-        <p>{props.item.name}</p>
-      </div>
+    <div
+      name="card"
+      className={classes.join(" ")}
+      onClick={cardOnClick}>
+        <button
+          name="delete"
+          className="delete-button"
+          onClick={props.handleDelete}>x</button>
+        <span className="option-title">{props.item.name}</span>
     </div>
   )
 }

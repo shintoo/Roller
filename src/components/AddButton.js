@@ -3,7 +3,10 @@ import React from "react"
 function AddButton(props) {
   const handleClick = (event) => {
     const newName = prompt("Enter a new option.")
-    props.addOption(newName)
+    console.log("Handling add")
+    if (name !== null && name.length !== 0)
+      console.log("passed check")
+      props.addOption(newName)
   }
 
   return (

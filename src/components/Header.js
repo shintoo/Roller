@@ -6,7 +6,7 @@ function Header() {
   const onClick = () => {
     const newTitle = prompt("Enter a title")
 
-    if (newTitle.length > 0)
+    if (newTitle && newTitle.length > 0)
       setTitle(newTitle)
   }
 

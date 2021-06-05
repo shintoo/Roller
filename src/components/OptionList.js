@@ -12,7 +12,7 @@ function OptionList(props) {
         props.ignore(r.id)
       }}
       handleDelete={() => {
-        props.handleDelete(r.id)
+        props.deleteOption(r.id)
       }}
       item={r} />)
 

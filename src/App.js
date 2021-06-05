@@ -9,20 +9,21 @@ function App() {
   const [ selected, setSelected ] = useState()
   const [ completed, setCompleted ] = useState(false)
   const [ options, setOptions ] = useState(optionData)
+  const [ newId, setNewId ] = useState(10)
 
   const roll = async () => {
     let i
     let delay = 100
-    let id = 0
-    const ticks = Math.floor(Math.random() * 20) + (options.length * 2)
+    let index = 0
+    const ticks = Math.floor(Math.random() * 20) + (options.length * 3)
 
     if (options.every(r => r.ignored))
       return
 
-    while (options[id].ignored)
-      id++
+    while (options[index].ignored)
+      index++
 
-    setSelected(id)
+    setSelected(options[index].id)
     setCompleted(false)
     let sleep = () =>
       new Promise(resolve => setTimeout(resolve, delay))
@@ -31,19 +32,19 @@ function App() {
       await sleep()
 
       setSelected(prevSelected => {
-          let id = prevSelected + 1
+          index++
 
-          if (id >= options.length)
-            id = 0
+          if (index >= options.length)
+            index = 0
 
-          while (options[id].ignored) {
-            id++
+          while (options[index].ignored) {
+            index++
 
-            if (id >= options.length)
-              id = 0
+            if (index >= options.length)
+              index = 0
           }
 
-          return id
+          return options[index].id
       })
 
       if (delay < 300)
@@ -58,14 +59,16 @@ function App() {
 
   const ignore = id => {
     setOptions(prevOptions => {
-      prevOptions[id].ignored = !prevOptions[id].ignored
+      const index = prevOptions.findIndex(o => o.id === id)
+
+      prevOptions[index].ignored = !prevOptions[index].ignored
       return prevOptions
     })
   }
 
 
   const deleteOption = id => {
-    const index = options.indexOf(id)
+    const index = options.findIndex(o => o.id === id)
     setOptions(prevOptions => {
       prevOptions.splice(index, 1)
       return [ ...prevOptions ]
@@ -73,13 +76,15 @@ function App() {
   }
 
   const addOption = name => {
-    if (name.length === 0)
-      return
-
     const newOption = {
-      id: options.length,
+      id: newId,
       name: name
     }
+
+    setNewId(newId+1)
+
+    console.log("Adding ", newOption)
+
     setOptions(prevOptions => [ ...prevOptions, newOption ])
   }
 
