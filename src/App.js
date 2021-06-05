@@ -28,35 +28,34 @@ function App() {
     let sleep = () =>
       new Promise(resolve => setTimeout(resolve, delay))
 
+    let increment = prevSelected => {
+      index++
+
+      if (index >= options.length)
+        index = 0
+
+      while (options[index].ignored) {
+        index++
+
+        if (index >= options.length)
+          index = 0
+      }
+
+      return options[index].id
+    }
+
     for (i = 0; i < ticks; i++) {
       await sleep()
 
-      // eslint-disable-next-line
-      setSelected(prevSelected => {
-          index++
-
-          if (index >= options.length)
-            index = 0
-
-          while (options[index].ignored) {
-            index++
-
-            if (index >= options.length)
-              index = 0
-          }
-
-          return options[index].id
-      })
+      setSelected(increment)
 
       if (delay < 300)
         delay *= 1.05
-
-
     }
+
     await sleep()
     setCompleted(true)
   }
-
 
   const ignore = id => {
     setOptions(prevOptions => {
@@ -83,9 +82,6 @@ function App() {
     }
 
     setNewId(newId+1)
-
-    console.log("Adding ", newOption)
-
     setOptions(prevOptions => [ ...prevOptions, newOption ])
   }
 
