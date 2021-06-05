@@ -31,6 +31,7 @@ function App() {
     for (i = 0; i < ticks; i++) {
       await sleep()
 
+      // eslint-disable-next-line
       setSelected(prevSelected => {
           index++
 
