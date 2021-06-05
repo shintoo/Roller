@@ -7,7 +7,7 @@ import optionData from "./resources/optionData"
 
 function App() {
   const [ selected, setSelected ] = useState()
-  const [ completed, setCompleted ] = useState(false)
+  const [ completed, setCompleted ] = useState(true)
   const [ options, setOptions ] = useState(optionData)
   const [ newId, setNewId ] = useState(10)
 
@@ -98,7 +98,7 @@ function App() {
         deleteOption={deleteOption}
         selected={selected} />
       <AddButton addOption={addOption} />
-      <RollButton onClick={roll} disabled={options.every(r => r.ignored)} />
+      <RollButton onClick={roll} disabled={!completed} />
     </div>
   )
 }
