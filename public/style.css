@@ -109,3 +109,19 @@ button {
   display: inline-block;
   margin-top: 2em;
 }
+
+.roll-button:disabled {
+  animation-name: rolling;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes rolling {
+  to {
+    padding: 15px 16px;
+    background-color: #095CAA;
+    opacity: 0.8;
+  }
+}
+
+

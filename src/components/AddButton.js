@@ -11,7 +11,11 @@ function AddButton(props) {
 
   return (
     <div>
-      <button className="add-button" onClick={handleClick}>+</button>
+      <button
+        className="add-button"
+        onClick={handleClick}>
+          +
+        </button>
       <br />
     </div>
   )

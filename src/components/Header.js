@@ -8,6 +8,7 @@ function Header() {
 
     if (newTitle && newTitle.length > 0)
       setTitle(newTitle)
+      document.title = newTitle + " - Roller"
   }
 
   return (

@@ -10,7 +10,7 @@ function OptionCard(props) {
     ,props.completed ? "completed ": ""]
 
   const cardOnClick = event => {
-    if (event.target.name == "delete") {
+    if (event.target.name === "delete") {
       return
     }
 
