@@ -2,26 +2,37 @@ import React, { useState } from "react"
 
 function Header() {
   const [title, setTitle] = useState("Where shall we eat?")
+  const [editing, setEditing] = useState(false)
 
   const onClick = () => {
-    const newTitle = prompt("Enter a title")
+      setEditing(true)
+  }
 
-    if (newTitle && newTitle.length > 0)
-      setTitle(newTitle)
-      document.title = newTitle + " - Roller"
+  const handleChange = (event) => {
+    setTitle(event.target.value)
+    document.title = title + " - Roller"
+  }
+
+  const handleKeyUp = (event) => {
+    if (event.key === "Enter") {
+      setEditing(false)
+      return
+    }
   }
 
   return (
     <div className="header">
-      <h1 onClick={onClick}>{title}</h1>
-{/*      <div className="instructions">
-        <p>
-          Where shall we eat? <br />
-          Tap "Roll" to let <span style={{fontStyle: "italic"}}>food.js</span> decide. <br />
-          Also, you can tap on any of the options to exclude them.
-        </p>
-      </div>
-*/}      <hr />
+      { editing ?
+          <input
+            autoFocus
+            type="text"
+            value={title}
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+          /> :
+          <h1 onClick={onClick}>{title}</h1>
+      }
+      <hr />
     </div>
   )
 }
